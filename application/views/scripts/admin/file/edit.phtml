@@ -1,0 +1,79 @@
+<div class="jarviswidget">
+	<header>
+	</header>
+	<div class="widget-body">
+		<form method="post" action="" enctype="multipart/form-data" autocomplete="off">
+
+			<div class="form-group <?php if (isset($this->errors['Name'])) echo 'has-error'; ?>">
+				<label class="col-md-2 control-label">Название *</label>
+
+				<div class="col-md-10">
+					<input type="text" value="<?= $this->file->getName() ?>" name="Name"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Описание</label>
+
+				<div class="col-md-10">
+					<textarea name="Description" class="TinyMCE"><?= $this->file->getDescription() ?></textarea>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<?php if ($this->file->getTypeId() == 1) { ?>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Изображение</label>
+				<div class="col-md-10">
+						<?php if ($this->file->getLocation()) { ?>
+							<img style="max-width: 600px; max-height: 300px" src="<?= $this->file->getLocation() ?>"/>
+						<?php } ?>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<?php } ?>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Размер</label>
+				<div class="col-md-10">
+					<?=$this->file->SizeText()?>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Тип</label>
+				<div class="col-md-10">
+					<?=$this->file->getHeaderType()?>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Путь</label>
+				<div class="col-md-10">
+					<?=$this->file->getLocation()?>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+
+			<div class="form-actions">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="/admin/" type="reset" class="btn btn-default">
+							Отмена
+						</a>
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-save"></i>
+							Сохранить
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

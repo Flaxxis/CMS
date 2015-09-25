@@ -1,0 +1,206 @@
+<div class="jarviswidget">
+	<header>
+	</header>
+	<div class="widget-body">
+		<form method="post" action="/admin/user/id/<?=$this->user->getId()?>"  enctype="multipart/form-data" autocomplete="off">
+			<div class="form-group <?php if(isset($this->errors['Username'])) echo 'has-error';?>">
+				<label class="col-md-2 control-label">Логин *</label>
+
+				<div class="col-md-10">
+					<input type="text" value="<?= $this->user->getUsername() ?>" name="Username"
+						   <?php if($this->user->getId()){?>disabled="disabled"<?php } ?>
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<?php if ($this->customer->isSuperAdmin()) { ?>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Ip</label>
+
+					<div class="col-md-10">
+						<input type="text" value="<?= $this->user->getIp() ?>" disabled="disabled"
+							   class="form-control">
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label">Последний визит</label>
+
+					<div class="col-md-10">
+						<input type="text" value="<?= $this->user->getVisitTime() ?>" disabled="disabled"
+							   class="form-control">
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="form-group <?php if(isset($this->errors['TypeId'])) echo 'has-error';?>">
+					<label class="col-md-2 control-label">Тип</label>
+
+					<div class="col-md-10">
+						<select name="TypeId" class="form-control">
+							<?php foreach ($this->customer->types as $k => $v) { ?>
+								<option
+									value="<?= $k ?>" <?php if ($k == $this->user->getTypeId()) echo 'selected="selected"' ?>><?= $v ?></option>
+							<?php } ?>
+						</select>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label">Статус</label>
+
+					<div class="col-md-10">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="StatusId" value="1" class="checkbox style-0"
+									   <?php if($this->user->getStatusId()) echo  'checked="checked"'?>>
+								<span>Активный</span>
+							</label>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label">Бан</label>
+
+					<div class="col-md-10">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="Ban" value="1" class="checkbox style-0"
+									<?php if($this->user->getBan()) echo  'checked="checked"'?>>
+								<span>Забанен</span>
+							</label>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			<?php } ?>
+
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Аватар</label>
+				<div class="col-md-10">
+					<?php if($this->user->getAva()){?>
+						<img src="<?=$this->user->getAva()?>" />
+					<?php }?>
+					<input type="file" class="btn btn-default" id="Ava" name="Ava">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group <?php if(isset($this->errors['FirstName'])) echo 'has-error';?>">
+				<label class="col-md-2 control-label">Имя</label>
+
+				<div class="col-md-10">
+					<input type="text" name="FirstName" value="<?= $this->user->getFirstName() ?>" class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Фамилия</label>
+
+				<div class="col-md-10">
+					<input type="text" name="MiddleName" value="<?= $this->user->getMiddleName() ?>"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Отчество</label>
+
+				<div class="col-md-10">
+					<input type="text" name="LastName" value="<?= $this->user->getLastName() ?>" class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Компания</label>
+
+				<div class="col-md-10">
+					<input type="text" name="CompanyName" value="<?= $this->user->getCompanyName() ?>"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group <?php if(isset($this->errors['Email'])) echo 'has-error';?>">
+				<label class="col-md-2 control-label">Email *</label>
+
+				<div class="col-md-10">
+					<input type="email" name="Email" value="<?= $this->user->getEmail() ?>" class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group <?php if(isset($this->errors['Phone'])) echo 'has-error';?>">
+				<label class="col-md-2 control-label">Телефон</label>
+
+				<div class="col-md-10">
+					<input type="text" name="Phone" value="<?= $this->user->getPhone() ?>" class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Описание</label>
+
+				<div class="col-md-10">
+					<textarea name="Description" class="TinyMCE"><?= $this->user->getDescription() ?></textarea>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group <?php if(isset($this->errors['Password'])) echo 'has-error';?>">
+				<label class="col-md-2 control-label">Пароль *</label>
+
+				<div class="col-md-10">
+					<?php if($this->user->getId()){?>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" id="CPass" class="checkbox style-0">
+								<span>Изменить пароль</span>
+							</label>
+						</div>
+					<?php } ?>
+
+					<input type="password" name="ChangePassword"  <?php if($this->user->getId()){?>disabled="disabled"<?php } ?> value="" class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-actions">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="/admin/" type="reset" class="btn btn-default">
+							Отмена
+						</a>
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-save"></i>
+							Сохранить
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+	$(function() {
+		$('input[name=ChangePassword]').val('');
+		$('#CPass').change(function(){
+			if($(this).prop('checked')){
+				$('[name=ChangePassword]').removeAttrs('disabled');
+			} else {
+				$('[name=ChangePassword]').attr('disabled','disabled');
+			}
+		});
+	})
+</script>

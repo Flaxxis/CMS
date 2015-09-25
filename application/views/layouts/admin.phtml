@@ -1,0 +1,296 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<meta content="ru-RU" http-equiv="Content-Language">
+
+	<title> Admin Panel </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- Basic Styles -->
+	<link rel="stylesheet" type="text/css" media="screen" href="/admin_template/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="/admin_template/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" media="screen" href="/admin_template/css/smartadmin-production.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="/admin_template/css/smartadmin-skins.css">
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script>
+		if (!window.jQuery) {
+			document.write('<script src="/admin_template/js/libs/jquery-2.0.2.min.js"><\/script>');
+		}
+	</script>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script>
+		if (!window.jQuery.ui) {
+			document.write('<script src="/admin_template/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+		}
+	</script>
+
+
+	<!-- BOOTSTRAP JS -->
+	<script src="/admin_template/js/bootstrap/bootstrap.min.js"></script>
+
+</head>
+<body class="">
+
+<!-- HEADER -->
+<header id="header">
+	<div id="logo-group">
+
+		<!-- PLACE YOUR LOGO HERE -->
+		<span id="logo">Admin Panel</span>
+		<!-- END LOGO PLACEHOLDER -->
+
+		<?php //echo $this->render('admin/parts/messages.phtml');?>
+	</div>
+
+	<!-- projects dropdown -->
+	<div id="project-context">
+		<?php //echo $this->render('admin/parts/projects.phtml');?>
+	</div>
+	<!-- end projects dropdown -->
+
+	<!-- pulled right: nav area -->
+	<div class="pull-right">
+
+		<!-- collapse menu button -->
+		<div id="hide-menu" class="btn-header pull-right">
+			<span> <a href="javascript:void(0);" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+		</div>
+		<!-- end collapse menu -->
+
+		<!-- logout button -->
+		<div id="logout" class="btn-header transparent pull-right">
+			<span> <a href="javascript:void(0);" title="Sign Out"><i class="fa fa-sign-out"></i></a> </span>
+		</div>
+		<!-- end logout button -->
+
+	</div>
+	<!-- end pulled right: nav area -->
+
+</header>
+<!-- END HEADER -->
+
+
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<aside id="left-panel">
+
+	<!-- User info -->
+	<div class="login-info">
+		<span><img src="<?php echo $this->customer->getAva() ?: '/admin_template/img/avatars/male.png' ?>"
+				   alt="<?php echo $this->customer->getUsername() ?>" class="online"/>
+			<a href="javascript:void(0);" id="show-shortcut">
+				<?php echo $this->customer->getUsername() ?> <i class="fa fa-angle-down"></i></a>
+		</span>
+	</div>
+	<!-- end user info -->
+
+	<?php echo $this->render('admin/parts/menu.phtml'); ?>
+
+</aside>
+<!-- END NAVIGATION -->
+
+
+<div id="main" role="main">
+
+	<!-- RIBBON -->
+	<div id="ribbon">
+
+
+	</div>
+	<!-- END RIBBON -->
+
+	<!-- MAIN CONTENT -->
+	<div id="content">
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+				<h1 class="page-title txt-color-blueDark">
+					<?= $this->page_title; ?>
+				</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-12">
+
+				<?php echo $this->render('admin/parts/info.phtml'); ?>
+
+				<?php echo $this->layout()->content; ?>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+		Note: These tiles are completely responsive,
+		you can add as many as you like
+		-->
+	<div id="shortcut">
+		<ul>
+			<li>
+				<a href="#inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i
+							class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span>
+				</a>
+			</li>
+			<li>
+				<a href="#calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i
+							class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
+			</li>
+			<li>
+				<a href="#gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i
+							class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
+			</li>
+			<li>
+				<a href="#invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i
+							class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span>
+				</a>
+			</li>
+			<li>
+				<a href="#gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span
+						class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
+			</li>
+			<li>
+				<a href="javascript:void(0);" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span
+						class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
+			</li>
+		</ul>
+	</div>
+	<!-- END SHORTCUT AREA -->
+
+
+
+
+	<!-- CUSTOM NOTIFICATION -->
+	<script src="/admin_template/js/notification/SmartNotification.min.js"></script>
+
+	<!-- JARVIS WIDGETS -->
+	<script src="/admin_template/js/smartwidgets/jarvis.widget.min.js"></script>
+
+	<!-- EASY PIE CHARTS -->
+	<script src="/admin_template/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+	<!-- SPARKLINES -->
+	<script src="/admin_template/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+	<!-- JQUERY VALIDATE -->
+	<script src="/admin_template/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+	<!-- JQUERY MASKED INPUT -->
+	<script src="/admin_template/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+	<!-- JQUERY SELECT2 INPUT -->
+	<script src="/admin_template/js/plugin/select2/select2.min.js"></script>
+
+	<!-- JQUERY UI + Bootstrap Slider -->
+	<script src="/admin_template/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+	<!-- browser msie issue fix -->
+	<script src="/admin_template/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+	<!-- SmartClick: For mobile devices -->
+	<script src="/admin_template/js/plugin/smartclick/smartclick.js"></script>
+
+	<!-- MAIN APP JS FILE -->
+	<script src="/admin_template/js/app.js"></script>
+
+	<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
+	<script src="/admin_template/js/plugin/flot/jquery.flot.cust.js"></script>
+	<script src="/admin_template/js/plugin/flot/jquery.flot.resize.js"></script>
+	<script src="/admin_template/js/plugin/flot/jquery.flot.tooltip.js"></script>
+
+	<!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
+	<script src="/admin_template/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="/admin_template/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+	<!-- Full Calendar -->
+	<script src="/admin_template/js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+
+			$.datepicker.regional['ru'] = {
+				closeText: 'Закрыть',
+				prevText: '&#x3c;Пред',
+				nextText: 'След&#x3e;',
+				currentText: 'Сегодня',
+				monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
+					'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+				monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
+					'Июл','Авг','Сен','Окт','Ноя','Дек'],
+				dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+				dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+				dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+				firstDay: 1,
+				isRTL: false,
+				dateFormat:'dd-mm-YY'
+			};
+			$.datepicker.setDefaults($.datepicker.regional['ru']);
+
+			// DO NOT REMOVE : GLOBAL FUNCTIONS!
+			pageSetUp();
+			$('.datepicker').datepicker();
+		});
+	</script>
+
+	<?php if(Models_Config::findByCode('text_editor')->getValue() == 'tinyMCE'){?>
+	<script type="text/javascript" language="javascript" src="<?php echo $this->tiny_path; ?>"></script>
+	<script type="text/javascript" language="javascript">
+
+		//tinymce.PluginManager.load('moxiemanager', '/js/tiny_mce/plugins/__moxiemanager/plugin.min.js');
+
+		tinyMCE.init({
+			// General options
+			selector: ".TinyMCE",
+			language: "ru",
+			plugins: [
+				"advlist autolink lists link image charmap print preview anchor",
+				"searchreplace visualblocks code fullscreen",
+				"insertdatetime media table contextmenu paste filemanager imagetools responsivefilemanager textcolor textpattern"
+			],
+			toolbar: "insertfile undo redo | styleselect | bold italic fontselect fontsizeselect forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | link image responsivefilemanager ",
+			autosave_ask_before_unload: false,
+			menubar: true,
+			resize: false,
+			verify_html: false,
+			paste_use_dialog: false,
+			force_br_newlines: true,
+			force_p_newlines: false,
+			relative_urls: false,
+			apply_source_formatting: true,
+			remove_script_host: true,
+
+
+			paste_retain_style_properties: "all",
+			paste_auto_cleanup_on_paste: false,
+			paste_remove_styles: false,
+			paste_remove_styles_if_webkit: false,
+			paste_strip_class_attributes: false,
+
+			link_list: "/admin/tinymcelist/",
+
+			image_advtab: true,
+			external_filemanager_path: "/js/tiny_mce/plugins/filemanager/",
+			filemanager_title: "Responsive Filemanager",
+			external_plugins: {"filemanager": "/js/tiny_mce/plugins/filemanager/plugin.min.js"}
+
+		});
+	</script>
+	<!-- /TinyMCE -->
+	<?php } else {?>
+		<script src="/admin_template/js/plugin/ckeditor/ckeditor.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				CKEDITOR.replaceAll( 'TinyMCE', {
+					height: '380px'
+				} );
+			})
+		</script>
+	<?php }?>
+
+
+</body>
+</html>

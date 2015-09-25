@@ -1,0 +1,192 @@
+<div class="jarviswidget">
+	<header>
+	</header>
+	<div class="widget-body">
+		<form method="post" action="/admin/page/id/<?=$this->page->getId()?>"  enctype="multipart/form-data" autocomplete="off">
+
+			<div class="form-group <?php if(isset($this->errors['Url'])) echo 'has-error';?>">
+				<label class="col-md-2 control-label">Url *</label>
+				<div class="col-md-10">
+					<input type="text" value="<?= $this->page->getUrl() ?>" name="Url"
+						   <?php if($this->page->getId()){?>disabled="disabled"<?php } ?>
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Название *</label>
+				<div class="col-md-10">
+					<input type="text" name="Name" value="<?= $this->page->getName() ?>"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Родительская страница</label>
+				<div class="col-md-10">
+					<select name="ParentId" class="form-control">
+						<option></option>
+						<?php foreach (Models_Menu::DB()->findAll(array('Id <> '.(int)$this->page->getId())) as $parent) { ?>
+							<option
+								value="<?= $parent->getId() ?>" <?php if ($parent->getId() == $this->page->getParentId()) echo 'selected="selected"' ?>><?= $parent->getName() ?></option>
+						<?php } ?>
+					</select>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<?php if($this->page->getId()){?>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Путь</label>
+				<div class="col-md-10">
+					<input type="text" value="<?= $this->page->getPath() ?>"  disabled="disabled"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<?php }?>
+
+			<div class="form-group <?php if(isset($this->errors['TypeId'])) echo 'has-error';?>">
+				<label class="col-md-2 control-label">Тип</label>
+				<div class="col-md-10">
+					<select name="TypeId" class="form-control">
+						<option></option>
+						<?php foreach ($this->page->types as $k => $v) { ?>
+							<option
+								value="<?= $k ?>" <?php if ($k == $this->page->getTypeId()) echo 'selected="selected"' ?>><?= $v ?></option>
+						<?php } ?>
+					</select>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<?php if ($this->customer->isSuperAdmin()) { ?>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Controller</label>
+					<div class="col-md-10">
+						<input type="text" name="Controller" value="<?= $this->page->getController() ?>"
+							   class="form-control">
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label">Action</label>
+					<div class="col-md-10">
+						<input type="text" name="Action" value="<?= $this->page->getAction() ?>"
+							   class="form-control">
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label">Parameter</label>
+					<div class="col-md-10">
+						<input type="text" name="Parameter" value="<?= $this->page->getParameter() ?>"
+							   class="form-control">
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			<?php } ?>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">SEO Название</label>
+				<div class="col-md-10">
+					<input type="text" name="Title" value="<?= $this->page->getTitle() ?>"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">SEO Ключевые слова</label>
+				<div class="col-md-10">
+					<input type="text" name="MetatagKeywords" value="<?= $this->page->getMetatagKeywords() ?>"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">SEO Описание</label>
+				<div class="col-md-10">
+					<input type="text" name="MetatagDescription" value="<?= $this->page->getMetatagDescription() ?>"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Короткий текст</label>
+				<div class="col-md-10">
+					<textarea name="PageIntro" class="TinyMCE"><?= $this->page->getPageIntro() ?></textarea>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Текст</label>
+				<div class="col-md-10">
+					<textarea name="PageBody" class="TinyMCE"><?= $this->page->getPageBody() ?></textarea>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Изображение</label>
+				<div class="col-md-10">
+					<?php if($this->page->getImage()){?>
+						<img style="max-height: 300px; max-width: 600px;" src="<?=$this->page->getImage()?>" />
+					<?php }?>
+					<input type="file" class="btn btn-default" id="Image" name="Image">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Переадресация</label>
+				<div class="col-md-10">
+					<input type="text" name="RedirectUrl" value="<?= $this->page->getRedirectUrl() ?>"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Нельзя удалять</label>
+				<div class="col-md-10">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="NoDelete" value="1" class="checkbox style-0"
+								<?php if($this->page->getNoDelete()) echo  'checked="checked"'?>>
+							<span></span>
+						</label>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-actions">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="/admin/" type="reset" class="btn btn-default">
+							Отмена
+						</a>
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-save"></i>
+							Сохранить
+						</button>
+						<?php if($this->page->getId()){?>
+						<a href="<?=$this->page->getPath()?>" target="_blank" class="btn btn-success">
+							<i class="fa fa-eye"></i>
+							Просмотреть
+						</a>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

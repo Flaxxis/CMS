@@ -1,0 +1,73 @@
+<div class="jarviswidget">
+	<header></header>
+	<div>
+		<div class="widget-body no-padding">
+
+			<div class="widget-body-toolbar">
+
+			</div>
+			<form method="post" action="" enctype="multipart/form-data" autocomplete="off">
+
+				<table id="dt_basic" class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th></th>
+						<th>Код</th>
+						<th>Название</th>
+						<th>Тип</th>
+						<th>Элементов</th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php foreach ($this->items as $item) { ?>
+						<tr>
+							<td>
+								<a class="btn btn-default btn-circle" title="Просмотреть"
+								   href="/admin/seegallery/id/<?= $item->getId() ?>">
+									<i class="glyphicon glyphicon-eye-open"></i>
+								</a>
+								<a class="btn btn-warning btn-circle" title="Удалить"
+								   href="/admin/gallery/delete/<?= $item->getId() ?>"
+								   onclick="return confirm('Вы уверены что хотите удалить ?')">
+									<i class="glyphicon glyphicon-remove"></i>
+								</a>
+
+							</td>
+							<td>{<?= $item->codeKey . $item->getId() ?>}</td>
+							<td><?= $item->getName() ?></td>
+							<td><?= $item->getType() ?></td>
+							<td><?= $item->getItems()->count() ?></td>
+						</tr>
+					<?php } ?>
+					<tr>
+						<td>Новая:</td>
+						<td colspan="2"><input type="text" value="" class="form-control" name="Name"/></td>
+						<td colspan="2">
+							<select class="form-control" name="TypeId">
+								<?php foreach (Models_Gallery::$types as $k => $v) { ?>
+									<option value="<?= $k ?>"><?= $v ?></option>
+								<?php } ?>
+							</select>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<div class="form-actions no-margin">
+					<div class="row">
+						<div class="col-md-12">
+							<a href="/admin/" type="reset" class="btn btn-default">
+								Отмена
+							</a>
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-save"></i>
+								Сохранить
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+

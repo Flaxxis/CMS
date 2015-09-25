@@ -1,0 +1,21 @@
+<nav>
+	<ul>
+		<?php foreach ($this->menu_pages as $k => $menu) { ?>
+			<li>
+				<a href="<?= @$menu->url ?: '#' ?>"><i class="fa fa-lg fa-fw <?= $menu->class ?>"></i>
+					<span class="menu-item-parent"><?= $k ?></span>
+				</a>
+				<?php if (@$menu->kids) { ?>
+					<ul>
+						<?php foreach ($menu->kids as $kk => $kmenu) { ?>
+							<li>
+								<a href="<?= $kmenu->url ?>"><?= $kk ?></a>
+							</li>
+						<?php } ?>
+					</ul>
+				<?php } ?>
+			</li>
+		<?php } ?>
+	</ul>
+</nav>
+<span class="minifyme"> <i class="fa fa-arrow-circle-left hit"></i> </span>

@@ -1,0 +1,35 @@
+<div class="jarviswidget">
+	<header>
+	</header>
+	<div class="widget-body">
+		<form method="post" action="" enctype="multipart/form-data" autocomplete="off">
+			<?php foreach($this->configs as $config){?>
+				<div class="form-group">
+					<label class="col-md-2 control-label"><?=$config->getCode()?></label>
+
+					<div class="col-md-10">
+						<input type="text" name="config[<?=$config->getCode()?>]" value="<?=$config->getValue()?>"
+							   class="form-control">
+
+						<p class="note"><?=$config->getDescription()?></p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			<?php } ?>
+
+			<div class="form-actions">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="/admin/" type="reset" class="btn btn-default">
+							Отмена
+						</a>
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-save"></i>
+							Сохранить
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

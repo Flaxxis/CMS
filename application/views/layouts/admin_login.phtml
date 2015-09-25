@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+
+	<title> Admin Panel </title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- Basic Styles -->
+	<link rel="stylesheet" type="text/css" media="screen" href="/admin_template/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="/admin_template/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" media="screen" href="/admin_template/css/smartadmin-production.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="/admin_template/css/smartadmin-skins.css">
+
+
+	<!-- GOOGLE FONT -->
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+</head>
+<body id="login" class="animated fadeInDown">
+<!-- possible classes: minified, no-right-panel, fixed-ribbon, fixed-header, fixed-width-->
+<header id="header">
+	<!--<span id="logo"></span>-->
+
+	<div id="logo-group">
+		<span id="logo"> Admin Panel </span>
+
+		<!-- END AJAX-DROPDOWN -->
+	</div>
+
+</header>
+
+<div id="main" role="main">
+
+	<!-- MAIN CONTENT -->
+	<div id="content" class="container">
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
+				<h1 class="txt-color-red login-header-big">Admin panel</h1>
+				<div class="hero">
+
+					<div class="pull-left login-desc-box-l">
+						<h4 class="paragraph-header"></h4>
+					</div>
+
+				</div>
+
+
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+				<div class="well no-padding">
+					<form action="/admin/login/" id="login-form" method="post" class="smart-form client-form">
+						<header>
+							Вход
+						</header>
+
+						<fieldset>
+
+							<section>
+								<label class="label">Логин</label>
+								<label class="input"> <i class="icon-append fa fa-user"></i>
+									<input type="text" name="login">
+									<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Введите ваш логин </b></label>
+							</section>
+
+							<section>
+								<label class="label">Пароль</label>
+								<label class="input"> <i class="icon-append fa fa-lock"></i>
+									<input type="password" name="password">
+									<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Введите ваш пароль </b> </label>
+							</section>
+
+							<section>
+								<label class="checkbox">
+									<input type="checkbox" value="1" name="remember" checked="">
+									<i></i>Запомнить меня</label>
+							</section>
+						</fieldset>
+						<footer>
+							<button type="submit" class="btn btn-primary">
+								Ввойти
+							</button>
+						</footer>
+					</form>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!--================================================== -->
+
+<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
+<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
+
+<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script> if (!window.jQuery) { document.write('<script src="/admin_template/js/libs/jquery-2.0.2.min.js"><\/script>');} </script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script> if (!window.jQuery.ui) { document.write('<script src="/admin_template/js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script>
+
+<!-- JS TOUCH : include this plugin for mobile drag / drop touch events
+<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+
+<!-- BOOTSTRAP JS -->
+<script src="/admin_template/js/bootstrap/bootstrap.min.js"></script>
+
+<!-- CUSTOM NOTIFICATION -->
+<script src="/admin_template/js/notification/SmartNotification.min.js"></script>
+
+<!-- JARVIS WIDGETS -->
+<script src="/admin_template/js/smartwidgets/jarvis.widget.min.js"></script>
+
+<!-- EASY PIE CHARTS -->
+<script src="/admin_template/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+<!-- SPARKLINES -->
+<script src="/admin_template/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+<!-- JQUERY VALIDATE -->
+<script src="/admin_template/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+<!-- JQUERY MASKED INPUT -->
+<script src="/admin_template/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+<!-- JQUERY SELECT2 INPUT -->
+<script src="/admin_template/js/plugin/select2/select2.min.js"></script>
+
+<!-- JQUERY UI + Bootstrap Slider -->
+<script src="/admin_template/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+<!-- browser msie issue fix -->
+<script src="/admin_template/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+<!-- SmartClick: For mobile devices -->
+<script src="/admin_template/js/plugin/smartclick/smartclick.js"></script>
+
+
+<!-- MAIN APP JS FILE -->
+<script src="/admin_template/js/app.js"></script>
+
+<script type="text/javascript">
+	runAllForms();
+
+	$(function() {
+		// Validation
+		$("#login-form").validate({
+			// Rules for form validation
+			rules : {
+				login : {
+					required : true,
+				},
+				password : {
+					required : true,
+					minlength : 3,
+					maxlength : 20
+				}
+			},
+
+			// Messages for form validation
+			messages : {
+				login : {
+					required : 'Введите логин'
+				},
+				password : {
+					required : 'Введите пароль'
+				}
+			},
+
+			// Do not change code below
+			errorPlacement : function(error, element) {
+				error.insertAfter(element.parent());
+			}
+		});
+	});
+</script>
+
+</body>
+</html>

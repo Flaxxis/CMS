@@ -1,0 +1,21 @@
+<?php if ($this->MessageInfo) { ?>
+	<div class="alert alert-info fade in">
+		<i class="fa-fw fa fa-info"></i>
+		<?= $this->MessageInfo ?>
+	</div>
+<?php } ?>
+
+<?php if ($this->MessageError) { ?>
+	<div class="alert alert-danger fade in">
+		<i class="fa-fw fa fa-times"></i>
+		<?=$this->MessageError?>
+	</div>
+<?php } ?>
+
+<?php if ($this->MessageWarning) { ?>
+<div class="alert alert-warning fade in">
+	<i class="fa-fw fa fa-warning"></i>
+	<?=$this->MessageWarning?>
+</div>
+<?php } ?>
+

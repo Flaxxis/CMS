@@ -1,0 +1,30 @@
+<div class="row">
+	<a class="btn btn-success" style="float: right;" href="/admin/upload/"><i class="fa fa-plus"></i> Загрузить изображения</i></a>
+
+	<!-- SuperBox -->
+	<div class="superbox col-sm-12">
+		<?php foreach ($this->files as $file) { ?>
+			<div class="superbox-list">
+				<img src="<?= $file->getSmallImage() ?>" data-img="<?= $file->getLocation() ?>"
+					 alt="<?= $file->getDescription() ?>" title="<?= $file->getName() ?>"
+					 delete="/admin/delfile/id/<?= $file->getId() ?>"
+					 edit="/admin/editfile/id/<?= $file->getId() ?>"
+					 size="<?=$file->SizeText();?>"
+					 class="superbox-img">
+			</div>
+		<?php } ?>
+		<div class="superbox-float"></div>
+	</div>
+
+	<div class="superbox-show" style="height:300px; display: none"></div>
+
+</div>
+
+
+<script src="/admin_template/js/plugin/superbox/superbox.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.superbox').SuperBox();
+	})
+</script>

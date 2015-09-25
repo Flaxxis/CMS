@@ -1,0 +1,59 @@
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-6">
+		<div class="jarviswidget jarviswidget-color-blueDark">
+			<header>
+				<h2> Структура: </h2>
+			</header>
+			<div>
+				<div class="widget-body">
+					<?php if($this->struct) d($this->struct,0);?>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12 col-md-12 col-lg-6">
+		<div class="jarviswidget jarviswidget-color-blueDark">
+			<header>
+				<h2> Запрос: </h2>
+			</header>
+			<div>
+				<div class="widget-body">
+					<form method="post" action="" autocomplete="off">
+						<div class="form-group">
+							<div class="col-md-10">
+								<textarea class="form-control" name="query"><?= $this->post->query ?></textarea>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-12">
+									<button type="submit" class="btn btn-primary">
+										Отправить
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="col-sm-12 col-md-12 col-lg-6">
+		<div class="jarviswidget jarviswidget-color-blueDark">
+			<header>
+				<h2> Ответ: </h2>
+			</header>
+			<div>
+				<div class="widget-body">
+					<?php if($this->answer) d($this->answer,0);?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<div class="col-md-4">
+	<form method="post" action="">
+
+		<div class="form-group">
+			<label for="LMI_SYS_PAYMENT_NO">Paymaster Id</label>
+			<input type="number" class="form-control" name="LMI_SYS_PAYMENT_NO" id="LMI_SYS_PAYMENT_NO" >
+		</div>
+
+		<div class="form-group">
+			<label for="ActionAmount">Amount</label>
+			<input type="text" class="form-control" name="ActionAmount" id="ActionAmount" placeholder="0.00">
+		</div>
+
+		<div class="form-group">
+			<label for="RefundAmount">Refund amount</label>
+			<input type="text" class="form-control" name="RefundAmount" id="RefundAmount" placeholder="0.00">
+		</div>
+
+		<button class="btn btn-default" type="submit">Submit</button>
+	</form>
+</div>
+<div class="col-md-4">
+	<?php if($this->info) d($this->info, false);?>
+</div>

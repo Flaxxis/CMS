@@ -1,0 +1,109 @@
+<div class="col-sm-12 col-md-12 col-lg-8">
+	<div class="jarviswidget">
+		<header>
+		</header>
+		<div>
+			<div class="widget-body no-padding">
+
+				<div class="widget-body-toolbar">
+
+				</div>
+
+				<table id="dt_basic" class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th></th>
+						<th>Имя</th>
+						<th>Дата</th>
+						<th>Размер</th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php foreach ($this->backups as $backup) { ?>
+						<tr>
+							<td>
+								<a class="btn btn-default btn-circle" title="Скачать"
+								   href="/admin/backup/id/<?= $backup->getId() ?>">
+									<i class="glyphicon glyphicon-download"></i>
+								</a>
+								<a class="btn btn-warning btn-circle" title="Удалить"
+								   href="/admin/backup/delete/<?= $backup->getId() ?>"
+								   onclick="return confirm('Вы уверены что хотите удалить ?')">
+									<i class="glyphicon glyphicon-remove"></i>
+								</a>
+
+							</td>
+							<td><?= $backup->getName() ?></td>
+							<td><?= date('d-m-Y H:i:s', strtotime($backup->getCtime())) ?></td>
+							<td><?= $backup->SizeText() ?></td>
+						</tr>
+					<?php } ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-sm-12 col-md-12 col-lg-4">
+	<div class="jarviswidget">
+		<header></header>
+		<div class="widget-body">
+			<h3>Создать резервную копию</h3>
+			<form method="post" action="/admin/backup/" autocomplete="off">
+				<div class="form-group">
+					<label class="col-md-2 control-label">Имя</label>
+
+					<div class="col-md-10">
+						<input type="text" value="" name="name" class="form-control">
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label"></label>
+
+					<div class="col-md-10">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="addfiles" value="1" class="checkbox style-0"
+									   checked="checked">
+								<span>Сохранять файлы (если не нажато сохраняет только базу)</span>
+							</label>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div class="form-actions">
+					<div class="row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-save"></i>
+								Сохранить
+							</button>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+</div>
+
+
+<script src="/admin_template/js/plugin/datatables/jquery.dataTables-cust.min.js"></script>
+<script src="/admin_template/js/plugin/datatables/ColReorder.min.js"></script>
+<script src="/admin_template/js/plugin/datatables/FixedColumns.min.js"></script>
+<script src="/admin_template/js/plugin/datatables/ColVis.min.js"></script>
+<script src="/admin_template/js/plugin/datatables/ZeroClipboard.js"></script>
+<script src="/admin_template/js/plugin/datatables/media/js/TableTools.min.js"></script>
+<script src="/admin_template/js/plugin/datatables/DT_bootstrap.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		$('#dt_basic').dataTable({
+			"sPaginationType": "bootstrap_full"
+		});
+
+	});
+</script>

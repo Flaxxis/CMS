@@ -1,0 +1,130 @@
+<div class="jarviswidget">
+	<header>
+	</header>
+	<div class="widget-body">
+		<form method="post" action="/admin/onenews/id/<?=$this->item->getId()?>"  enctype="multipart/form-data" autocomplete="off">
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Название *</label>
+				<div class="col-md-10">
+					<input type="text" name="Title" value="<?= $this->item->getTitle() ?>"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Дата начала</label>
+				<div class="col-md-10">
+					<input type="text" name="Start" value="<?= $this->item->getStart()?date('d.m.Y',strtotime($this->item->getStart())):'' ?>"
+						   class="form-control datepicker">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Дата окончания</label>
+				<div class="col-md-10">
+					<input type="text" name="End" value="<?= $this->item->getEnd()?date('d.m.Y',strtotime($this->item->getEnd())):'' ?>"
+						   class="form-control datepicker">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<?php if($this->item->getId()){?>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Путь</label>
+				<div class="col-md-10">
+					<input type="text" value="<?= $this->item->getPath() ?>"  disabled="disabled"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<?php }?>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Статус</label>
+
+				<div class="col-md-10">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="Status" value="1" class="checkbox style-0"
+								<?php if($this->item->getStatus()) echo  'checked="checked"'?>>
+							<span>Активная</span>
+						</label>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Короткий текст</label>
+				<div class="col-md-10">
+					<textarea name="Intro" class="TinyMCE"><?= $this->item->getIntro() ?></textarea>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Текст</label>
+				<div class="col-md-10">
+					<textarea name="Content" class="TinyMCE"><?= $this->item->getContent() ?></textarea>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">SEO Ключевые слова</label>
+				<div class="col-md-10">
+					<input type="text" name="Keywords" value="<?= $this->item->getKeywords() ?>"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">SEO Описание</label>
+				<div class="col-md-10">
+					<input type="text" name="Description" value="<?= $this->item->getDescription() ?>"
+						   class="form-control">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Изображение</label>
+				<div class="col-md-10">
+					<?php if($this->item->getImage()){?>
+						<img style="max-height: 300px; max-width: 600px;" src="<?=$this->item->getImage()?>" />
+					<?php }?>
+					<input type="file" class="btn btn-default" id="Image" name="Image">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+
+			<div class="form-actions">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="/admin/" type="reset" class="btn btn-default">
+							Отмена
+						</a>
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-save"></i>
+							Сохранить
+						</button>
+						<?php if($this->item->getId()){?>
+						<a href="<?=$this->item->getPath()?>" target="_blank" class="btn btn-success">
+							<i class="fa fa-eye"></i>
+							Просмотреть
+						</a>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

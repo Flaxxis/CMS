@@ -1,0 +1,78 @@
+<div class="jarviswidget">
+	<header>
+		<a class="btn btn-success" style="float: right;" href="/admin/page/"><i class="fa fa-plus"></i>
+			Новая страница</i></a>
+	</header>
+	<div>
+		<div class="widget-body no-padding">
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th>
+					</th>
+					<th>Название</th>
+					<th>Тип</th>
+					<th>Путь</th>
+					<th>Переадресация</th>
+				</tr>
+				<tbody class="Sortable">
+				<?php foreach ($this->pages as $page) { ?>
+					<tr>
+						<td>
+							<input type="hidden" class="hidden_ids" value="id<?=$page->getId()?>" />
+							<a class="btn btn-default btn-circle" title="Редактировать" href="/admin/page/id/<?=$page->getId()?>">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</a>
+							<a class="btn btn-default btn-circle handle" title="Переместить"
+							   onclick="return false">
+								<i class="glyphicon glyphicon-resize-vertical"></i>
+							</a>
+
+							<a class="btn btn-default btn-circle" href="<?=$page->getPath()?>" title="Переместить" target="_blank">
+								<i class="glyphicon glyphicon-eye-open"></i>
+							</a>
+							<a class="btn btn-warning btn-circle" title="Удалить" href="/admin/pages/delete/<?=$page->getId()?>"
+							   onclick="return confirm('Вы уверены что хотите удалить ?')">
+								<i class="glyphicon glyphicon-remove"></i>
+							</a>
+						</td>
+						<td><?=$page->getName()?></td>
+						<td><?=$page->getType()?></td>
+						<td><?=$page->getPath()?></td>
+						<td><?=$page->getRedirectUrl()?></td>
+					</tr>
+				<?php } ?>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+</div>
+
+<script>
+	function saveOrders(){
+		var coll = $('.hidden_ids');
+		var total = coll.size();
+		var i = 1;
+		var data = '';
+		coll.each(function () {
+			data += $(this).val() + '=' + (i) + '&';
+			i++;
+		});
+		$.ajax({
+			type: "POST",
+			url: "/admin/pages/act/saveajaxorder",
+			data: data,
+			success: function (msg) {
+
+			}
+		});
+	}
+
+	$(document).ready(function () {
+		$('.Sortable').sortable({
+			handle: '.handle',
+			stop: function (event, ui) {
+				saveOrders();
+			}});
+	});
+</script>
