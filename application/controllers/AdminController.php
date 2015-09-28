@@ -113,11 +113,6 @@ class AdminController extends controllerAbstract
 			$this->view->menu_pages = json_decode(json_encode($this->menu_pages));
 			$this->view->tiny_path = '/js/tiny_mce/tinymce.min.js';
 		}
-
-		$this->view->MessageInfo = '';
-		$this->view->MessageError = '';
-		$this->view->MessageWarning = '';
-
 	}
 
 	public function indexAction()
@@ -181,9 +176,9 @@ class AdminController extends controllerAbstract
 					$user->uploadAva($_FILES['Ava']);
 				}
 
-				$this->view->MessageInfo = 'Сохранено успешно';
+				Message::getInstance()->set('Сохранено успешно','info');
 			} else {
-				$this->view->MessageError = 'Ошибка сохранения';
+				Message::getInstance()->set('Ошибка сохранения','error');
 			}
 		}
 		$this->view->errors = $errors;
@@ -201,7 +196,7 @@ class AdminController extends controllerAbstract
 					$config->save();
 				}
 			}
-			$this->view->MessageInfo = 'Сохранено успешно';
+			Message::getInstance()->set('Сохранено успешно','info');
 		}
 		$this->view->configs = Models_Config::DB()->findAll();
 	}
@@ -253,9 +248,9 @@ class AdminController extends controllerAbstract
 					$user->uploadAva($_FILES['Ava']);
 				}
 
-				$this->view->MessageInfo = 'Сохранено успешно';
+				Message::getInstance()->set('Сохранено успешно','info');
 			} else {
-				$this->view->MessageError = 'Ошибка сохранения';
+				Message::getInstance()->set('Ошибка сохранения','error');
 			}
 		}
 		$this->view->errors = $errors;
@@ -320,9 +315,9 @@ class AdminController extends controllerAbstract
 					$page->uploadImage($_FILES['Image']);
 				}
 
-				$this->view->MessageInfo = 'Сохранено успешно';
+				Message::getInstance()->set('Сохранено успешно','info');
 			} else {
-				$this->view->MessageError = 'Ошибка сохранения';
+				Message::getInstance()->set('Ошибка сохранения','error');
 			}
 		}
 		$this->view->errors = $errors;
@@ -370,9 +365,9 @@ class AdminController extends controllerAbstract
 			if (!$file->getName()) $errors['Name'] = '1';
 			if (!count($errors)) {
 				$file->save();
-				$this->view->MessageInfo = 'Сохранено успешно';
+				Message::getInstance()->set('Сохранено успешно','info');
 			} else {
-				$this->view->MessageError = 'Ошибка сохранения';
+				Message::getInstance()->set('Ошибка сохранения','error');
 			}
 		}
 
@@ -564,9 +559,9 @@ class AdminController extends controllerAbstract
 					$item->uploadImage($_FILES['Image']);
 				}
 
-				$this->view->MessageInfo = 'Сохранено успешно';
+				Message::getInstance()->set('Сохранено успешно','info');
 			} else {
-				$this->view->MessageError = 'Ошибка сохранения';
+				Message::getInstance()->set('Ошибка сохранения','error');
 			}
 		}
 		$this->view->errors = $errors;

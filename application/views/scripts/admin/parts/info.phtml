@@ -1,21 +1,31 @@
-<?php if ($this->MessageInfo) { ?>
-	<div class="alert alert-info fade in">
-		<i class="fa-fw fa fa-info"></i>
-		<?= $this->MessageInfo ?>
-	</div>
-<?php } ?>
+<?php if (Message::getInstance()->count('info')) {
+	foreach (Message::getInstance()->get('info') as $item) {
+		?>
+		<div class="alert alert-info fade in">
+			<i class="fa-fw fa fa-info"></i>
+			<?= $item ?>
+		</div>
+	<?php }
+} ?>
 
-<?php if ($this->MessageError) { ?>
-	<div class="alert alert-danger fade in">
-		<i class="fa-fw fa fa-times"></i>
-		<?=$this->MessageError?>
-	</div>
-<?php } ?>
 
-<?php if ($this->MessageWarning) { ?>
-<div class="alert alert-warning fade in">
-	<i class="fa-fw fa fa-warning"></i>
-	<?=$this->MessageWarning?>
-</div>
-<?php } ?>
+<?php if (Message::getInstance()->count('error')) {
+	foreach (Message::getInstance()->get('error') as $item) {
+		?>
+		<div class="alert alert-danger fade in">
+			<i class="fa-fw fa fa-times"></i>
+			<?= $item ?>
+		</div>
+	<?php }
+} ?>
 
+
+<?php if (Message::getInstance()->count('warning')) {
+	foreach (Message::getInstance()->get('warning') as $item) {
+		?>
+		<div class="alert alert-warning fade in">
+			<i class="fa-fw fa fa-warning"></i>
+			<?= $item ?>
+		</div>
+	<?php }
+} ?>
